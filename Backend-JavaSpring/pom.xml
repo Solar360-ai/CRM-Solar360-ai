@@ -54,8 +54,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.zoho.crm</groupId>
-			<artifactId>zohocrmsdk-2-1</artifactId>
-			<version>4.0.1</version>
+			<artifactId>zohocrm-java-sdk-7-0</artifactId>
+			<version>4.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -106,7 +106,7 @@
 
 	<repositories>
 		<repository>
-			<id>zohocrmsdk-2-1</id>
+			<id>zohocrm-java-sdk-7-0</id>
 			<url>https://maven.zohodl.com</url>
 		</repository>
 	</repositories>
