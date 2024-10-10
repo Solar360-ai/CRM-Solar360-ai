@@ -6,6 +6,7 @@ import com.zoho.api.authenticator.OAuthToken;
 import com.zoho.api.authenticator.Token;
 import com.zoho.crm.api.HeaderMap;
 import com.zoho.crm.api.Initializer;
+import com.zoho.crm.api.dc.DataCenter;
 import com.zoho.crm.api.dc.DataCenter.Environment;
 import com.zoho.crm.api.dc.INDataCenter;
 import com.zoho.crm.api.dc.USDataCenter;
@@ -25,16 +26,23 @@ import com.zoho.crm.api.util.Model;
 public class CreateRecords
 {
 	
-	public static void createRecords(String moduleAPIName) throws Exception
+	public static void createRecords(String moduleAPIName, LeadRequest leadRequest) throws Exception
 	{
+		DataCenter.Environment environment = INDataCenter.PRODUCTION;
+		Token token = new OAuthToken.Builder().accessToken("1000.6b72195df34c25ae4ee2be2e7119d86b.ec3eec6b56c68a03ef29100a5ffc0fe6").build();
+		new Initializer.Builder().environment(environment).token(token).initialize();
+
+
 		RecordOperations recordOperations = new RecordOperations(moduleAPIName);
 		BodyWrapper bodyWrapper = new BodyWrapper();
 		List<com.zoho.crm.api.record.Record> records = new ArrayList<com.zoho.crm.api.record.Record>();
 		com.zoho.crm.api.record.Record record1 = new com.zoho.crm.api.record.Record();
-		record1.addFieldValue(Field.Leads.LAST_NAME, "CHANDAK JAVA SDK");
-		record1.addFieldValue(Field.Leads.FIRST_NAME, "Shubham Java SDK");
-		record1.addFieldValue(Field.Leads.COMPANY, "KKRNP");
-		record1.addFieldValue(Field.Leads.ANNUAL_REVENUE, 1221.2);
+//        record1.addFieldValue(Field.Accounts.ACCOUNT_NAME, "Wattamwar");
+		record1.addFieldValue(Field.Leads.LAST_NAME, leadRequest.getLastName());
+		record1.addFieldValue(Field.Leads.FIRST_NAME, leadRequest.getFirstName());
+		record1.addFieldValue(Field.Leads.COMPANY, leadRequest.getCompany());
+        record1.addFieldValue(Field.Leads.PHONE, leadRequest.getPhone());
+
 		record1.addFieldValue(Field.Leads.LEAD_STATUS, new Choice<String>("Cold"));
 		List<Tag> tagList = new ArrayList<Tag>();
 		Tag tag = new Tag();
@@ -109,19 +117,19 @@ public class CreateRecords
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		try
-		{
-			Environment environment = INDataCenter.PRODUCTION;
-			Token token = new OAuthToken.Builder().accessToken("1000.cd146b854494d11b1ae0c86dd515fa7c.55ea55cf238d886f4e090c8596b0abf7").build();
-			new Initializer.Builder().environment(environment).token(token).initialize();
-			String moduleAPIName = "Leads";
-			createRecords(moduleAPIName);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args)
+//	{
+//		try
+//		{
+//			Environment environment = INDataCenter.PRODUCTION;
+//			Token token = new OAuthToken.Builder().accessToken("1000.63962993bd28481eb8bb21dcfc01ea1a.62811b512f5e4047112d8076b75c6b4b").build();
+//			new Initializer.Builder().environment(environment).token(token).initialize();
+//			String moduleAPIName = "Leads";
+////			createRecords(moduleAPIName);
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 }

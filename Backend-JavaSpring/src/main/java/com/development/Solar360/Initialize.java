@@ -22,7 +22,7 @@ public class Initialize
         
         Logger logger = new Logger.Builder()
                 .level(Levels.INFO)
-                .filePath("F:/java_sdk_log.log")
+                .filePath("C:\\Users\\anike\\OneDrive\\Documents\\GitHub\\CRM-Solar360-ai\\java_sdk_log.log")
                 .build();
         
         UserSignature user = new UserSignature("aniket@solar360.ai");
@@ -32,7 +32,7 @@ public class Initialize
         Token token = new OAuthToken.Builder()
 //                .clientID("1000.ISSL008JD15OG31GVOD8ZUVKY2FSBK")
 //                .clientSecret("401ad641818d3dbf979ec7ccedf2092372905ef68d")
-                .accessToken("1000.ef936d23d57b666ec25252ea99909419.0d41bca2d04ef46289547abdbfdf8f9c")
+                .accessToken("1000.c41fd8352a423f71ea1817aa6996863c.12e46f69dcd796064445f33e61678f02")
                 .findUser(false)
 //                .redirectURL("http://google.com/oauth2/callback")
                 .build();
@@ -41,7 +41,7 @@ public class Initialize
                 .autoRefreshFields(false)
                 .pickListValidation(true)
                 .build();
-        String resourcePath = "C:/Users/user_name/Documents/javasdk-application";
+        String resourcePath = "C:/Users/anike/OneDrive/Documents/GitHub/CRM-Solar360-ai/javasdk-application";
         
         new Initializer.Builder()
 		.environment(environment)

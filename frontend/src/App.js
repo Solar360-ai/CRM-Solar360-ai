@@ -13,7 +13,7 @@ function App() {
     
     <Router>
       <div className="App">
-      <ButtonAppBar />
+       
       <div >
         <Routes>
             {/* <Route path="/" element={<LeadBoard />} /> */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Box, TextField, Typography, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import LeadBoard from '../components/LeadBoard/LeadBoard';
+import ButtonAppBar from '../components/Topbar/Topbar';
 
 const theme = createTheme({
   palette: {
@@ -10,13 +11,13 @@ const theme = createTheme({
     },
   },
 });
-
+ 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [newLead, setNewLead] = useState({
     companyName: '',
-    contactName: '',
-    location: '',
+    lastName: '',
+    firstName: '',
     contactNumber: '',
   });
 
@@ -31,14 +32,37 @@ const Dashboard = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // Add the new lead to the Cold Lead column in LeadBoard
-    LeadBoard.addLead(newLead);
-    handleClose();
+  // const handleSubmit = () => {
+  //   // Add the new lead to the Cold Lead column in LeadBoard
+  //   LeadBoard.addLead(newLead);
+  //   handleClose();
+  // };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/addlead/create-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLead),
+      });
+
+      if (response.ok) {
+        console.log('Lead created successfully');
+        LeadBoard.addLead(newLead);
+        handleClose();
+      } else {
+        console.error('Error creating lead');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div>
+      <ButtonAppBar />
       <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
           <Button variant="contained" color="primary" onClick={handleOpen}>
@@ -84,22 +108,22 @@ const Dashboard = () => {
               margin="normal"
               required
               fullWidth
-              id="contactName"
-              label="Contact Name"
-              name="contactName"
-              autoComplete="contact-name"
-              value={newLead.contactName}
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              autoComplete="last-name"
+              value={newLead.lastName}
               onChange={handleChange}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              id="location"
-              label="Location"
-              name="location"
-              autoComplete="location"
-              value={newLead.location}
+              id="firstName"
+              label="Fisrt Name"
+              name="firstName"
+              autoComplete="firstName"
+              value={newLead.firstName}
               onChange={handleChange}
             />
             <TextField
