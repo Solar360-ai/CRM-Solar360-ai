@@ -1,4 +1,4 @@
-package com.development.Solar360;
+package com.development.Solar360.config;
 
 import com.zoho.api.authenticator.OAuthToken;
 import com.zoho.api.authenticator.Token;

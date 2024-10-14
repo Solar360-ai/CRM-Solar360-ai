@@ -1,4 +1,4 @@
-package com.development.Solar360;
+package com.development.Solar360.model.io;
 
 public class LeadRequest {
     private String firstName;

@@ -1,7 +1,9 @@
-package com.development.Solar360;
+package com.development.Solar360.records;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.development.Solar360.model.io.LeadRequest;
 import com.zoho.api.authenticator.OAuthToken;
 import com.zoho.api.authenticator.Token;
 import com.zoho.crm.api.HeaderMap;

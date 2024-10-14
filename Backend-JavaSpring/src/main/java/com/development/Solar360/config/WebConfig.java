@@ -1,4 +1,4 @@
-package com.development.Solar360;
+package com.development.Solar360.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

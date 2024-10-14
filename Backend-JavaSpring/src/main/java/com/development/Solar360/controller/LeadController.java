@@ -1,6 +1,10 @@
-package com.development.Solar360;
+package com.development.Solar360.controller;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.development.Solar360.model.io.LeadRequest;
+import com.development.Solar360.records.CreateRecords;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
