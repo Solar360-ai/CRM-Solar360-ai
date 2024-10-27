@@ -56,48 +56,56 @@ import com.zoho.crm.api.record.ResponseHandler;
 import com.zoho.crm.api.util.APIResponse;
 
 @RestController
+@RequestMapping("/getRecordsList")
 public class RecordsController {
 
-    @GetMapping("/getRecords")
-    public ResponseEntity<Object> getRecords() {
-    	
-    	List<com.zoho.crm.api.record.Record> records = null;
-    	
-    	
-        try {
-            // Call the createRecords method with the data from the request
-        	APIResponse<ResponseHandler> response = GetRecords.getRecords("Leads");
-        	
-        	
-        	
-    		if (response != null)
-    		{
-    			System.out.println("Status Code: " + response.getStatusCode());
-    			if (Arrays.asList(204, 304).contains(response.getStatusCode()))
-    			{
-    				if(response.getStatusCode() == 204) {
-    					return new ResponseEntity<>("No Content",HttpStatus.NO_CONTENT);
-    				}else {
-    					return new ResponseEntity<>("Not Modified",HttpStatus.NOT_MODIFIED);
-    				}
-    			}
-    			if (response.isExpected())
-    			{
-    				ResponseHandler responseHandler = response.getObject();
-    				if (responseHandler instanceof ResponseWrapper)
-    				{
-    					ResponseWrapper responseWrapper = (ResponseWrapper) responseHandler;
-    					records = responseWrapper.getData();
+	@GetMapping("/getRecords")
+	public ResponseEntity<Object> getRecords() {
 
-    				}
-            return new ResponseEntity<>(records, HttpStatus.OK);
-    				}		
-    			
-    		}
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("Error getting records: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+		List<com.zoho.crm.api.record.Record> records = null;
+
+
+		try {
+			// Call the createRecords method with the data from the request
+			APIResponse<ResponseHandler> response = GetRecords.getRecords("Leads");
+			System.out.println(response);
+
+
+			if (response != null)
+			{
+				System.out.println("Status Code: " + response.getStatusCode());
+				if (Arrays.asList(204, 304).contains(response.getStatusCode()))
+				{
+					if(response.getStatusCode() == 204) {
+						return new ResponseEntity<>("No Content",HttpStatus.NO_CONTENT);
+					}else {
+						return new ResponseEntity<>("Not Modified",HttpStatus.NOT_MODIFIED);
+					}
+				}
+				if (response.isExpected())
+				{
+					ResponseHandler responseHandler = response.getObject();
+					if (responseHandler instanceof ResponseWrapper)
+					{
+						ResponseWrapper responseWrapper = (ResponseWrapper) responseHandler;
+						records = responseWrapper.getData();
+
+						// Log the records to verify
+						for (com.zoho.crm.api.record.Record record : records) {
+							System.out.println("Record ID: " + record.getId());
+							System.out.println("Record Data: " + record.getKeyValues());
+						}
+
+
+					}
+					return new ResponseEntity<>(records, HttpStatus.OK);
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("Error getting records: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<>(records, HttpStatus.OK);
-    }
+	}
 }

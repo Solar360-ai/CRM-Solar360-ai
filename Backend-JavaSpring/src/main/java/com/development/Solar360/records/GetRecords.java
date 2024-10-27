@@ -46,12 +46,12 @@ public class GetRecords
 	public static APIResponse<ResponseHandler> getRecords(String moduleAPIName) throws Exception
 	{
 		DataCenter.Environment environment = INDataCenter.PRODUCTION;
-		Token token = new OAuthToken.Builder().accessToken("1000.a9988e5c89e6f97c932c0e9165e20e68.9afdf7a6346b5231e1fba38220e132b1").build();
+		Token token = new OAuthToken.Builder().accessToken("1000.bc4b542f4a8452bf550964065e12fb3d.08af3557b194fd421b51a367a25444be").build();
 		new Initializer.Builder().environment(environment).token(token).initialize();
 		
 		RecordOperations recordOperations = new RecordOperations(moduleAPIName);
 		ParameterMap paramInstance = new ParameterMap();
-	    List < String > fieldNames = new ArrayList < > (Arrays.asList("Company", "Email", "First_Name", "Last_Name"));
+	    List < String > fieldNames = new ArrayList < > (Arrays.asList("Company", "Email", "First_Name", "Last_Name", "Phone", "City","Lead_Status"));
 
 	    paramInstance.add(RecordOperations.GetRecordsParam.FIELDS, String.join(",", fieldNames));
 		HeaderMap headerInstance = new HeaderMap();

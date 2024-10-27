@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Box, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/system';
+import ButtonAppBar from '../components/Topbar/Topbar';
 
 const VisuallyHiddenInput = styled('input')({
   display: 'none',
@@ -49,6 +50,7 @@ function SmartQuotation() {
 
   return (
     <div>
+      <ButtonAppBar />
       <h2>Smart Quotation</h2>
       <Button
         component="label"

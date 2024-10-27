@@ -7,7 +7,7 @@ import ButtonAppBar from '../components/Topbar/Topbar';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#fcbf49', // Custom color
+      main: '#343a40', // Custom color
     },
   },
 });
@@ -120,7 +120,7 @@ const Dashboard = () => {
               required
               fullWidth
               id="firstName"
-              label="Fisrt Name"
+              label="First Name"
               name="firstName"
               autoComplete="firstName"
               value={newLead.firstName}
